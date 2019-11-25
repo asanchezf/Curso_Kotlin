@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Curso_1</string>
+    <string name="text"><b>Hello World!</b></string>
+    <string name="formato"> Identidad: BANCO CETELEM, S.A.U. (en adelante CETELEM).\n
+C.I.F.: A-78650348\n
+Dirección: Calle Retama, 3; 28045 Madrid\n
+Teléfono: 917909790\n
+Correo electrónico para cuestiones relacionadas con derechos sobre protección de \n
+        datos:SAC- quejasyreclamaciones@cetelem.es  \n\n
+
+Contacto Delegado de Protección de datos: DPO@cetelem.es\n\n
+
+    Podrá encontrar más información sobre protección de datos en nuestra \n
+        página Web\n
+        www.cetelem.es/protecciondedatos
+    </string>
 </resources>

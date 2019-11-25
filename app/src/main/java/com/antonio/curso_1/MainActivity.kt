@@ -1,13 +1,22 @@
 package com.antonio.curso_1
 
+import android.annotation.SuppressLint
+import android.os.AsyncTask
 import android.os.Bundle
+import android.os.SystemClock
+import android.text.Html
 import android.util.Log
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.antonio.curso_1.ObjetsCompanionObjects.MiObject
 import com.antonio.curso_1.definirClases.SmartPhone4
 import com.antonio.curso_1.herencia.Cientifica
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+      lateinit var progressBar:ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +72,21 @@ class MainActivity : AppCompatActivity() {
         MiObject.miFuncionObjetc()
         var url=MiObject.miUrl//Nos trae el valor de la constante definida en MiObject
 
+//http://jonsegador.com/2017/09/android-textview-convertir-urls-en-enlaces/
+        txtformato.setText(
+            Html.fromHtml(resources.getString(R.string.formato))
+            )
+
+
+        //ejecutaProgressBar()
+
     }
+
+    private fun ejecutaProgressBar() {
+        progressBar.max
+
+    }
+
     //recibe un entero y devuelve un entero
     fun alCuadrado(numero:Int):Int{
         return numero*numero
@@ -72,6 +95,38 @@ class MainActivity : AppCompatActivity() {
     fun mostrarLog(numeroAMostrar:Int){
 
         Log.d("TAG","El resultado es: $numeroAMostrar")
+    }
+
+
+
+     inner class AsynTask_load: AsyncTask<Void, Integer, Void>() {
+        var progreso:Int=0
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            Toast.makeText(this@MainActivity,"Estamos en el preexecute",Toast.LENGTH_LONG).show()
+            //Toast.makeText(this, "Hi there! This is a Toast.", Toast.LENGTH_SHORT).show()
+            progreso=0
+
+
+
+        }
+
+        @SuppressLint("WrongThread")
+        override fun doInBackground(vararg p0: Void?): Void? {
+            while (progreso<progressBar.max){
+                progreso++
+                //publishProgress(progreso)
+                SystemClock.sleep(20)
+
+            }
+            return null
+        }
+
+        override fun onProgressUpdate(vararg values: Integer?) {
+            super.onProgressUpdate(*values)
+            //progressBar.setProgress(values[0])
+        }
     }
 
 }
